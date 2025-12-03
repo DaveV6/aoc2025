@@ -31,16 +31,23 @@ def is_invalid_id(n):
         
     return False
 
-ranges = parse_ranges('input.txt')
+def count_invalid_ids(ranges):
+    invalid_ids = 0
 
-invalid_ids = 0
+    # take the starting and ending number
+    for start, end in ranges:
+        # go through each number of this range
+        for num in range(start, end + 1):
+            if is_invalid_id(num):
+                # add the number if its invalid
+                invalid_ids += num
 
-# take the starting and ending number
-for start, end in ranges:
-    # go through each number of this range
-    for num in range(start, end + 1):
-        if is_invalid_id(num):
-            # add the number if its invalid
-            invalid_ids += num
+    return invalid_ids
 
-print(invalid_ids)
+def main():
+    ranges = parse_ranges('input.txt')
+    invalid_ids = count_invalid_ids(ranges)
+    print(invalid_ids)
+
+if __name__ == "__main__":
+    main()

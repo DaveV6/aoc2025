@@ -1,7 +1,8 @@
-with open('input.txt') as file:
-    combinations = [line.rstrip() for line in file]
-
-joltage_sum = 0    
+def get_combinations(filename):
+    with open(filename) as file:
+        combinations = [line.rstrip() for line in file]
+   
+    return combinations
 
 def get_joltage(s, nums=12):
     res = []
@@ -27,8 +28,16 @@ def get_joltage(s, nums=12):
     
     return int(''.join(res))
     
-for s in combinations:
-    joltage = get_joltage(s)
-    joltage_sum += joltage
+def main():
+    combinations = get_combinations('input.txt')
+    joltage_sum = 0
+    nums = 12
+    
+    for s in combinations:
+        joltage = get_joltage(s, nums)
+        joltage_sum += joltage
+    
+    print(joltage_sum)
 
-print(joltage_sum)
+if __name__ == "__main__":
+    main()
